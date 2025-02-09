@@ -22,14 +22,23 @@ const BMICalculator = () => {
       return;
     }
 
-    const bmiValue = (weightNum / (heightNum * heightNum)).toFixed(2);
-    setBmi(bmiValue);
+    // Calculate BMI as a number and set it
+    const bmiValue = weightNum / (heightNum * heightNum);
+    const bmiValueFixed = bmiValue.toFixed(2); // Keep this for display as string
+    const bmiValueNumber = parseFloat(bmiValueFixed); // Use number for conditions
+
+    setBmi(bmiValueFixed);
 
     let category = '';
-    if (bmiValue < 18.5) category = 'Underweight';
-    else if (bmiValue >= 18.5 && bmiValue < 24.9) category = 'Normal weight';
-    else if (bmiValue >= 25 && bmiValue < 29.9) category = 'Overweight';
-    else category = 'Obesity';
+    if (bmiValueNumber < 18.5) {
+      category = 'Underweight';
+    } else if (bmiValueNumber >= 18.5 && bmiValueNumber < 24.9) {
+      category = 'Normal weight';
+    } else if (bmiValueNumber >= 25 && bmiValueNumber < 29.9) {
+      category = 'Overweight';
+    } else {
+      category = 'Obesity';
+    }
 
     setCategory(category);
   };
